@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ServicesPreview } from './components/ServicesPreview';
 import { FeaturedJobs } from './components/FeaturedJobs';
+import { WorkflowsSection } from './components/WorkflowsSection';
 import { EmployerSection } from './components/EmployerSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { AboutSection } from './components/AboutSection';
@@ -14,6 +15,8 @@ import { Footer } from './components/Footer';
 import { JobModal } from './components/JobModal';
 import { EmployerModal } from './components/EmployerModal';
 import { PolicyModal } from './components/PolicyModal';
+import { CandidateRegisterModal } from './components/CandidateRegisterModal';
+import { DocumentsModal } from './components/DocumentsModal';
 import { JobVacancy, WorkforceService } from './types';
 
 export default function App() {
@@ -22,6 +25,14 @@ export default function App() {
   const [isEmployerModalOpen, setIsEmployerModalOpen] = useState(false);
   const [selectedServiceForEmployer, setSelectedServiceForEmployer] = useState<string | undefined>();
   const [selectedPolicyKey, setSelectedPolicyKey] = useState<string | null>(null);
+  const [isCandidateRegisterOpen, setIsCandidateRegisterOpen] = useState(false);
+  const [documentsModalState, setDocumentsModalState] = useState<{
+    isOpen: boolean;
+    tab: 'candidate' | 'employer';
+  }>({
+    isOpen: false,
+    tab: 'candidate',
+  });
 
   // Search and filter state for jobs
   const [jobSearchFilter, setJobSearchFilter] = useState({
@@ -58,6 +69,17 @@ export default function App() {
     }
   };
 
+  const handleOpenCandidateRegister = () => {
+    setIsCandidateRegisterOpen(true);
+  };
+
+  const handleOpenDocumentsModal = (tab: 'candidate' | 'employer' = 'candidate') => {
+    setDocumentsModalState({
+      isOpen: true,
+      tab,
+    });
+  };
+
   const handleSelectSector = (sectorName: string) => {
     setJobSearchFilter((prev) => ({
       ...prev,
@@ -79,6 +101,8 @@ export default function App() {
       <Navbar
         onOpenEmployerModal={() => handleOpenEmployerModal()}
         onNavigateToJobs={handleNavigateToJobs}
+        onOpenCandidateRegister={handleOpenCandidateRegister}
+        onOpenDocumentsModal={() => handleOpenDocumentsModal('candidate')}
       />
 
       <main className="flex-1">
@@ -87,6 +111,8 @@ export default function App() {
           onSearch={handleSearch}
           onOpenEmployerModal={() => handleOpenEmployerModal()}
           onNavigateToJobs={handleNavigateToJobs}
+          onOpenCandidateRegister={handleOpenCandidateRegister}
+          onOpenDocumentsModal={() => handleOpenDocumentsModal('candidate')}
         />
 
         {/* 3. SERVICES PREVIEW */}
@@ -102,38 +128,47 @@ export default function App() {
           onClearFilters={handleClearFilters}
         />
 
-        {/* 5. EMPLOYER CTA */}
-        <EmployerSection
-          onRequestServices={() => handleOpenEmployerModal()}
+        {/* 5. WORKFLOWS & RECRUITMENT JOURNEY */}
+        <WorkflowsSection
+          onOpenCandidateRegister={handleOpenCandidateRegister}
+          onOpenEmployerModal={() => handleOpenEmployerModal()}
+          onOpenDocumentsModal={handleOpenDocumentsModal}
+          onNavigateToJobs={handleNavigateToJobs}
         />
 
-        {/* 6. WHY CHOOSE US */}
+        {/* 6. EMPLOYER CTA */}
+        <EmployerSection
+          onRequestServices={() => handleOpenEmployerModal()}
+          onOpenDocumentsModal={() => handleOpenDocumentsModal('employer')}
+        />
+
+        {/* 7. WHY CHOOSE US */}
         <WhyChooseUs />
 
-        {/* 7. ABOUT SECTION */}
+        {/* 8. ABOUT SECTION */}
         <AboutSection
           onRequestQuote={() => handleOpenEmployerModal()}
         />
 
-        {/* 8. SECTORS */}
+        {/* 9. SECTORS */}
         <SectorsGrid
           onSelectSector={handleSelectSector}
         />
 
-        {/* 9. TESTIMONIALS */}
+        {/* 10. TESTIMONIALS */}
         <Testimonials />
 
-        {/* 10. GALLERY / EVENTS */}
+        {/* 11. GALLERY / EVENTS */}
         <GallerySection />
 
-        {/* 11. FINAL CTA */}
+        {/* 12. FINAL CTA */}
         <FinalCta
           onFindJob={handleNavigateToJobs}
           onHireStaff={() => handleOpenEmployerModal()}
         />
       </main>
 
-      {/* 12. FOOTER */}
+      {/* 13. FOOTER */}
       <Footer
         onOpenPolicy={(policyKey) => setSelectedPolicyKey(policyKey)}
         onOpenEmployerModal={() => handleOpenEmployerModal()}
@@ -154,6 +189,29 @@ export default function App() {
           setSelectedServiceForEmployer(undefined);
         }}
         initialServiceId={selectedServiceForEmployer}
+      />
+
+      <CandidateRegisterModal
+        isOpen={isCandidateRegisterOpen}
+        onClose={() => setIsCandidateRegisterOpen(false)}
+        onOpenDocumentsModal={() => {
+          setIsCandidateRegisterOpen(false);
+          handleOpenDocumentsModal('candidate');
+        }}
+      />
+
+      <DocumentsModal
+        isOpen={documentsModalState.isOpen}
+        initialTab={documentsModalState.tab}
+        onClose={() => setDocumentsModalState((prev) => ({ ...prev, isOpen: false }))}
+        onOpenCandidateRegister={() => {
+          setDocumentsModalState((prev) => ({ ...prev, isOpen: false }));
+          setIsCandidateRegisterOpen(true);
+        }}
+        onOpenEmployerModal={() => {
+          setDocumentsModalState((prev) => ({ ...prev, isOpen: false }));
+          handleOpenEmployerModal();
+        }}
       />
 
       <PolicyModal

@@ -1,3 +1,35 @@
+export interface WorkflowStep {
+  id: string;
+  stepNumber: string;
+  title: string;
+  subtitle: string;
+  timeframe: string;
+  description: string;
+  keyDeliverables: string[];
+  audience: 'candidate' | 'employer';
+  iconName: string;
+}
+
+export interface DocumentItem {
+  id: string;
+  category: string;
+  name: string;
+  description: string;
+  mandatory: boolean;
+  acceptedFormats: string;
+  targetAudience: 'candidate' | 'employer';
+}
+
+export interface ComplianceStandard {
+  id: string;
+  name: string;
+  body: string;
+  badge: string;
+  description: string;
+  statutoryRef: string;
+  keyProtections: string[];
+}
+
 export interface JobVacancy {
   id: string;
   title: string;
@@ -5,6 +37,7 @@ export interface JobVacancy {
   employmentType: 'Permanent' | 'Temporary' | 'Contract' | 'Full-time';
   sector: string;
   salary: string;
+  salaryType?: 'annual' | 'hourly' | 'daily';
   shortDescription: string;
   fullDescription: string;
   keyResponsibilities: string[];
@@ -13,6 +46,10 @@ export interface JobVacancy {
   postedDate: string;
   referenceCode: string;
   closingDate: string;
+  urgency?: 'Immediate Start' | 'Actively Interviewing' | 'Urgent Requirement' | 'New Listing';
+  clientType?: string;
+  schedule?: string;
+  applicantCount?: number;
 }
 
 export interface WorkforceService {

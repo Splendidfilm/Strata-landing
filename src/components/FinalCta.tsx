@@ -8,72 +8,85 @@ interface FinalCtaProps {
 
 export const FinalCta: React.FC<FinalCtaProps> = ({ onFindJob, onHireStaff }) => {
   return (
-    <section className="py-20 md:py-28 bg-[#0f172a] text-white relative overflow-hidden">
+    <section className="py-28 md:py-40 bg-[#091322] text-white relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-[20rem] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="text-xs font-semibold uppercase tracking-wider text-blue-400 mb-4">
-            09. Take The Next Step
+          
+          <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-400 mb-4 flex items-center justify-center gap-2 font-display">
+            <span className="w-2 h-2 rounded-full bg-blue-400" />
+            <span>09 / Take The Next Step</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display mb-6 text-white text-balance">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-display mb-6 text-white text-balance leading-[1.08]">
             Ready for your next opportunity?
           </h2>
 
-          <p className="text-base sm:text-xl text-slate-300 font-light leading-relaxed mb-10 max-w-2xl mx-auto">
-            Whether you are taking the next step in your professional career or seeking reliable personnel to power your operations, our dedicated consultants are ready to assist.
+          <p className="text-lg sm:text-xl text-slate-300 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
+            Whether you are taking the next step in your professional career or seeking reliable personnel to power your operations, our dedicated UK consultants are ready to assist.
           </p>
 
-          {/* Dual CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+          {/* DUAL CTAs (HIGH IMPACT) */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16">
             <button
               type="button"
               onClick={onFindJob}
-              className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 text-slate-950 text-xs font-bold tracking-wider uppercase rounded-xl transition-all shadow-md flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto px-9 py-4.5 bg-white hover:bg-slate-100 text-slate-950 text-sm font-bold tracking-wider uppercase rounded-xl transition-all shadow-xl flex items-center justify-center gap-2.5 group"
             >
               <Briefcase className="w-4 h-4 text-slate-900" />
               <span>Find a Job</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
 
             <button
               type="button"
               onClick={onHireStaff}
-              className="w-full sm:w-auto px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 text-xs font-bold tracking-wider uppercase rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-9 py-4.5 bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 text-sm font-bold tracking-wider uppercase rounded-xl transition-all shadow-lg flex items-center justify-center gap-2.5 group"
             >
               <Building2 className="w-4 h-4 text-blue-400" />
               <span>Hire Staff</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
 
-          {/* Direct Communication Bar */}
-          <div className="pt-10 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
-            <div className="flex items-start gap-3">
-              <Phone className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+          {/* Direct Communication Bar with clear legibility */}
+          <div className="pt-12 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-8 text-left">
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-blue-400 shrink-0 shadow-2xs">
+                <Phone className="w-5 h-5" />
+              </div>
               <div>
-                <div className="text-xs text-slate-400 uppercase tracking-wider">Direct Line</div>
-                <div className="text-sm font-bold text-white font-mono">0800 246 8900</div>
-                <div className="text-[11px] text-slate-500">Mon–Fri 07:30–18:30 (24/7 on-call)</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Direct Priority Line</div>
+                <div className="text-lg font-bold text-white font-mono mt-0.5">0800 246 8900</div>
+                <div className="text-xs sm:text-sm text-slate-400 mt-0.5">Mon–Fri 07:30–18:30 (24/7 on-call)</div>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
-              <Mail className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-blue-400 shrink-0 shadow-2xs">
+                <Mail className="w-5 h-5" />
+              </div>
               <div>
-                <div className="text-xs text-slate-400 uppercase tracking-wider">Direct Inquiries</div>
-                <div className="text-sm font-bold text-white">enquiries@strataworkforce.co.uk</div>
-                <div className="text-[11px] text-slate-500">60-minute response guarantee</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Direct Inquiries</div>
+                <div className="text-base font-bold text-white mt-0.5">enquiries@strataworkforce.co.uk</div>
+                <div className="text-xs sm:text-sm text-slate-400 mt-0.5">60-minute response guarantee</div>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-blue-400 shrink-0 shadow-2xs">
+                <MapPin className="w-5 h-5" />
+              </div>
               <div>
-                <div className="text-xs text-slate-400 uppercase tracking-wider">National Presence</div>
-                <div className="text-sm font-bold text-white">London · Midlands · North · Scotland</div>
-                <div className="text-[11px] text-slate-500">Local teams across 12 UK branches</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">National Branch Network</div>
+                <div className="text-base font-bold text-white mt-0.5">London · Midlands · North · Scotland</div>
+                <div className="text-xs sm:text-sm text-slate-400 mt-0.5">Local teams across 12 UK hubs</div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

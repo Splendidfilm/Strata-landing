@@ -17,6 +17,8 @@ export const Footer: React.FC<FooterProps> = ({
   const complianceLinks = [
     { label: 'Privacy Policy', key: 'privacy' },
     { label: 'GDPR Compliance', key: 'gdpr' },
+    { label: 'Candidate Onboarding Guide', key: 'candidate-documents' },
+    { label: 'Terms of Business & SLA', key: 'terms-of-business' },
     { label: 'Anti-Bribery Policy', key: 'anti-bribery' },
     { label: 'Gifts & Hospitality', key: 'gifts-hospitality' },
     { label: 'Environmental Policy', key: 'environmental' },
@@ -25,42 +27,42 @@ export const Footer: React.FC<FooterProps> = ({
   ];
 
   return (
-    <footer id="contact" className="bg-[#080e1a] text-slate-400 border-t border-slate-800 text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+    <footer id="contact" className="bg-[#080e1a] text-slate-400 border-t border-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-10 lg:gap-14 mb-16">
           {/* Brand & Corporate Overview (Col 1-4) */}
           <div className="col-span-2 md:col-span-4 space-y-4">
             <a
               href="#"
-              className="text-xl font-extrabold tracking-tight text-white font-display flex items-center gap-2"
+              className="text-2xl font-extrabold tracking-tight text-white font-display flex items-center gap-2"
             >
-              <span className="w-2 h-5 bg-blue-500 rounded-xs inline-block" />
-              <span>STRATA<span className="text-slate-400 font-medium ml-1">WORKFORCE</span></span>
+              <span className="w-2.5 h-6 bg-blue-500 rounded-xs inline-block" />
+              <span>STRATA<span className="text-slate-400 font-semibold ml-1.5">WORKFORCE</span></span>
             </a>
 
-            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
+            <p className="text-sm text-slate-400 leading-relaxed max-w-sm font-normal">
               Strata Workforce Group is a UK recruitment and managed staffing consultancy providing compliant, responsive workforce solutions across Healthcare, Logistics, Construction, and Engineering.
             </p>
 
-            <div className="pt-2 space-y-1.5 text-slate-300">
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-blue-400" />
+            <div className="pt-2 space-y-2 text-sm text-slate-300 font-medium">
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>0800 246 8900 / +44 (0)161 820 4400</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-blue-400" />
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>contact@strataworkforce.co.uk</span>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-blue-400" />
+              <div className="flex items-center gap-2.5">
+                <MapPin className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>One St Peter’s Square, Manchester, M2 3DE</span>
               </div>
             </div>
 
-            <div className="pt-3 flex items-center gap-3 text-slate-400 text-[11px]">
-              <div className="flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="pt-4 flex items-center gap-3 text-xs text-slate-400 font-medium">
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 <span>REC Corporate Member #88492</span>
               </div>
               <span>·</span>
@@ -69,11 +71,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Company (Col 5-6) */}
-          <div className="col-span-1 md:col-span-2 space-y-3">
-            <div className="text-xs font-bold text-white uppercase tracking-wider font-display">
+          <div className="col-span-1 md:col-span-2 space-y-4">
+            <div className="text-sm font-bold text-white uppercase tracking-wider font-display">
               Company
             </div>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5 text-sm">
               <li>
                 <a href="#about" className="hover:text-white transition-colors">About Us</a>
               </li>
@@ -93,11 +95,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Candidates (Col 7-8) */}
-          <div className="col-span-1 md:col-span-2 space-y-3">
-            <div className="text-xs font-bold text-white uppercase tracking-wider font-display">
+          <div className="col-span-1 md:col-span-2 space-y-4">
+            <div className="text-sm font-bold text-white uppercase tracking-wider font-display">
               Candidates
             </div>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5 text-sm">
               <li>
                 <button onClick={onNavigateToJobs} className="text-left hover:text-white transition-colors">
                   Search Vacancies
@@ -119,11 +121,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Employers & Services (Col 9-10) */}
-          <div className="col-span-1 md:col-span-2 space-y-3">
-            <div className="text-xs font-bold text-white uppercase tracking-wider font-display">
+          <div className="col-span-1 md:col-span-2 space-y-4">
+            <div className="text-sm font-bold text-white uppercase tracking-wider font-display">
               Employers
             </div>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5 text-sm">
               <li>
                 <button onClick={onOpenEmployerModal} className="text-left hover:text-white transition-colors">
                   Request Staff
@@ -145,11 +147,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Resources & Contact (Col 11-12) */}
-          <div id="resources" className="col-span-1 md:col-span-2 space-y-3">
-            <div className="text-xs font-bold text-white uppercase tracking-wider font-display">
+          <div id="resources" className="col-span-1 md:col-span-2 space-y-4">
+            <div className="text-sm font-bold text-white uppercase tracking-wider font-display">
               Resources
             </div>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5 text-sm">
               <li>
                 <a href="#services" className="hover:text-white transition-colors">UK Salary Benchmarking</a>
               </li>
@@ -170,17 +172,17 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Governance & Policies Bar */}
-        <div className="pt-8 border-t border-slate-800/80 pb-6">
-          <div className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-3">
+        <div className="pt-10 border-t border-slate-800/80 pb-8">
+          <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-4 font-display">
             Statutory Governance & Compliance Policies
           </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-slate-400">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-400">
             {complianceLinks.map((policy) => (
               <button
                 key={policy.key}
                 type="button"
                 onClick={() => onOpenPolicy(policy.key)}
-                className="hover:text-white transition-colors text-left py-0.5 underline underline-offset-2"
+                className="hover:text-white transition-colors text-left py-0.5 underline underline-offset-4"
               >
                 {policy.label}
               </button>
@@ -189,7 +191,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Statutory Bottom Notice */}
-        <div className="pt-6 border-t border-slate-800/60 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div className="pt-6 border-t border-slate-800/60 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
             © {new Date().getFullYear()} Strata Workforce Group Limited. Registered in England & Wales (No. 12948201). All rights reserved.
           </div>

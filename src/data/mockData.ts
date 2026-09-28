@@ -5,6 +5,9 @@ import {
   TestimonialItem,
   GalleryItem,
   PolicyDocument,
+  WorkflowStep,
+  DocumentItem,
+  ComplianceStandard,
 } from '../types';
 
 export const ASSETS = {
@@ -123,6 +126,11 @@ export const FEATURED_JOBS: JobVacancy[] = [
     employmentType: 'Permanent',
     sector: 'Healthcare',
     salary: '£36,500 - £44,000 / annum + Enhancements',
+    salaryType: 'annual',
+    urgency: 'Immediate Start',
+    clientType: 'NHS Trust Supply Partner',
+    schedule: 'Full-Time (37.5 hrs) · Rotational Shifts',
+    applicantCount: 8,
     shortDescription:
       'Leading private healthcare group seeking an experienced RGN to provide clinical leadership across an acute recovery and rehabilitation ward.',
     fullDescription:
@@ -156,6 +164,11 @@ export const FEATURED_JOBS: JobVacancy[] = [
     employmentType: 'Permanent',
     sector: 'Logistics',
     salary: '£38,000 - £42,500 / annum',
+    salaryType: 'annual',
+    urgency: 'Actively Interviewing',
+    clientType: 'Tier-1 Multimodal Hub',
+    schedule: 'Mon–Fri 07:00–16:00 (On-site)',
+    applicantCount: 14,
     shortDescription:
       'Manage inventory throughput, dock scheduling, and transport allocation within a state-of-the-art 320,000 sq ft multimodal distribution facility.',
     fullDescription:
@@ -189,6 +202,11 @@ export const FEATURED_JOBS: JobVacancy[] = [
     employmentType: 'Contract',
     sector: 'Construction',
     salary: '£290 - £340 / day (CIS / Umbrella)',
+    salaryType: 'daily',
+    urgency: 'Urgent Requirement',
+    clientType: 'National Main Contractor',
+    schedule: 'Mon–Fri 07:30–17:00 (9 Months)',
+    applicantCount: 6,
     shortDescription:
       'Lead on-site operations for a prestigious £4.2m commercial office retrofit project in central Leeds. 9-month initial contract with extension potential.',
     fullDescription:
@@ -221,6 +239,11 @@ export const FEATURED_JOBS: JobVacancy[] = [
     employmentType: 'Permanent',
     sector: 'Manufacturing',
     salary: '£37,000 - £45,000 / annum + Shift Allowance',
+    salaryType: 'annual',
+    urgency: 'New Listing',
+    clientType: 'Aerospace Precision OEM',
+    schedule: 'Rotating Early / Late Shifts',
+    applicantCount: 5,
     shortDescription:
       'Precision aerospace machining facility seeking a skilled 5-axis Mazak/Heidenhain setter-operator producing tight-tolerance titanium components.',
     fullDescription:
@@ -254,6 +277,11 @@ export const FEATURED_JOBS: JobVacancy[] = [
     employmentType: 'Permanent',
     sector: 'Administration',
     salary: '£42,000 - £48,000 / annum',
+    salaryType: 'annual',
+    urgency: 'Actively Interviewing',
+    clientType: 'City Professional Practice',
+    schedule: 'Hybrid (3 Days Office, 2 WFH)',
+    applicantCount: 19,
     shortDescription:
       'City of London professional services consultancy seeks an experienced payroll & finance specialist to administer end-to-end UK payroll and management accounts.',
     fullDescription:
@@ -287,6 +315,11 @@ export const FEATURED_JOBS: JobVacancy[] = [
     employmentType: 'Temporary',
     sector: 'Social Care',
     salary: '£14.20 - £17.50 / hour + Holiday Accrual',
+    salaryType: 'hourly',
+    urgency: 'Immediate Start',
+    clientType: 'Specialist Social Care Trust',
+    schedule: 'Flexible Rotas (Days / Waking Nights)',
+    applicantCount: 11,
     shortDescription:
       'Provide person-centred support for young adults with learning disabilities and autism in a high-quality residential care setting.',
     fullDescription:
@@ -312,6 +345,81 @@ export const FEATURED_JOBS: JobVacancy[] = [
     postedDate: '21 Sep 2026',
     referenceCode: 'STR-SOC-5201',
     closingDate: '30 Oct 2026'
+  },
+  {
+    id: 'job-07',
+    title: 'HGV Class 1 (C+E) Trunking Driver',
+    location: 'Northampton (NN4) / East Midlands',
+    employmentType: 'Temporary',
+    sector: 'Logistics',
+    salary: '£19.50 - £24.00 / hour (PAYE / Umbrella)',
+    salaryType: 'hourly',
+    urgency: 'Immediate Start',
+    clientType: 'National Distribution Network',
+    schedule: 'Guaranteed 50 hrs/wk · Fixed Start Times',
+    applicantCount: 16,
+    shortDescription:
+      'Clean depot-to-depot curtain-side trunking with no handballing required. Modern Euro 6 fleet with weekly pay every Friday.',
+    fullDescription:
+      'We are recruiting experienced Class 1 drivers for ongoing trunking operations out of Northampton. Regular fixed start times with day and night rotas available immediately.',
+    keyResponsibilities: [
+      'Safely operate modern articulated commercial vehicles on scheduled inter-depot trunk runs',
+      'Conduct pre-trip and post-trip vehicle defect inspections in line with DVSA standards',
+      'Maintain accurate digital tachograph compliance and EU drivers hours logs',
+      'Liaise with transport planners upon arrival at distribution hubs'
+    ],
+    requirements: [
+      'Valid UK Category C+E driving licence (minimum 12 months experience)',
+      'Active Driver Qualification Card (DCPC) and Digital Tachograph card',
+      'Maximum 6 penalty points (no DD, DR, or IN endorsements)',
+      'Proven knowledge of UK drivers hours and working time directive'
+    ],
+    benefits: [
+      'Guaranteed 10 hours paid per shift minimum',
+      'Dedicated 24/7 on-call driver support consultant',
+      'Clean modern fleet equipped with telematics and air-con',
+      'Accrued holiday pay and pension scheme'
+    ],
+    postedDate: '20 Sep 2026',
+    referenceCode: 'STR-LOG-9014',
+    closingDate: '28 Oct 2026'
+  },
+  {
+    id: 'job-08',
+    title: 'Special Educational Needs (SEN) Teaching Assistant',
+    location: 'Leeds (LS6) / West Yorkshire',
+    employmentType: 'Permanent',
+    sector: 'Education',
+    salary: '£22,500 - £26,800 / annum (Term-Time Pro-Rata)',
+    salaryType: 'annual',
+    urgency: 'New Listing',
+    clientType: 'Multi-Academy Trust',
+    schedule: 'Mon–Fri 08:30–15:30 (Term-Time Only)',
+    applicantCount: 7,
+    shortDescription:
+      'Support pupils with autism spectrum conditions (ASC) and speech and language needs within a nurturing secondary school academy.',
+    fullDescription:
+      'A welcoming and inclusive secondary academy in Headingley is seeking an empathetic SEN Teaching Assistant to work 1:1 and in small groups supporting Key Stage 3 and 4 students.',
+    keyResponsibilities: [
+      'Deliver tailored 1:1 intervention sessions focusing on literacy and communication targets',
+      'Support classroom teachers with differentiated lesson resources and sensory breaks',
+      'Implement positive behaviour management techniques and emotion-coaching strategies',
+      'Record student progress and contribute to EHCP (Education, Health and Care Plan) reviews'
+    ],
+    requirements: [
+      'Level 2 or 3 Teaching Assistant qualification or relevant degree in Education/Psychology',
+      'Experience supporting children with SEN in a school or specialist provision',
+      'Enhanced child workforce DBS on the DBS Update Service (or willing to apply)',
+      'Patience, resilience, and excellent interpersonal skills'
+    ],
+    benefits: [
+      'School holidays off (13 weeks annual leave per year)',
+      'Local Government Pension Scheme (LGPS)',
+      'Continuous CPD in Makaton, Team-Teach, and trauma-informed practices'
+    ],
+    postedDate: '19 Sep 2026',
+    referenceCode: 'STR-EDU-3312',
+    closingDate: '22 Oct 2026'
   }
 ];
 
@@ -609,5 +717,386 @@ export const POLICIES_DATA: Record<string, PolicyDocument> = {
         body: 'All staff undergo mandatory annual anti-slavery training. Suspected exploitation is reported immediately to the Gangmasters and Labour Abuse Authority (GLAA) and the Modern Slavery Helpline (08000 121 700).'
       }
     ]
+  },
+  'candidate-documents': {
+    id: 'candidate-documents',
+    title: 'Candidate Onboarding Documentation Guide',
+    code: 'DOC-UK-08',
+    effectiveDate: 'Updated January 2026',
+    summary: 'Statutory requirements for right-to-work compliance, identity verification, and registration documents under UK immigration and employment law.',
+    sections: [
+      {
+        heading: '1. Right-to-Work (RTW) Verification',
+        body: 'Candidates must provide either a valid original British or Irish passport, or an official Home Office share code with date of birth for digital online verification. For non-UK nationals with biometric residence permits or visas, digital status check must verify unconditional permission to undertake the relevant category of employment.'
+      },
+      {
+        heading: '2. National Insurance & Proof of Address',
+        body: 'Official proof of National Insurance number (HMRC tax notification, P45, P60, or National Insurance card) alongside an official proof of residential address issued within the last 3 months (utility bill, bank statement, or council tax bill).'
+      },
+      {
+        heading: '3. Sector Specific Licences & DBS Certificates',
+        body: 'Depending on the sector: Enhanced DBS check (Children and/or Adults Barred List) registered on the Update Service; CSCS/CPCS/NPORS cards for construction; active NMC PIN for nurses; SSSC/HCPC registrations; C+E Driver CPC and Digi Tacho cards; or RTITB/ITSSAR forklift certificates.'
+      },
+      {
+        heading: '4. Verified Employment References',
+        body: 'A minimum of two verifiable employment or character references covering the previous 24 to 36 months of employment history without unexplained gaps.'
+      }
+    ]
+  },
+  'terms-of-business': {
+    id: 'terms-of-business',
+    title: 'Employer Terms of Business & Service Level Agreements',
+    code: 'TOS-UK-09',
+    effectiveDate: 'Standard Framework 2026',
+    summary: 'Commercial conditions, service response timeframes, candidate replacement guarantee, and regulatory commitments for client organisations.',
+    sections: [
+      {
+        heading: '1. Temporary Staffing SLA & Introduction Fees',
+        body: 'Standard response times guarantee candidate CV submission within 4 hours for temporary assignments. Invoicing is conducted weekly in arrears with clear breakdowns of basic hourly rates, statutory employer National Insurance, apprentice levy, and holiday pay accrual in strict accordance with the Agency Workers Regulations 2010 (AWR).'
+      },
+      {
+        heading: '2. Permanent Placement 100-Day Replacement Guarantee',
+        body: 'For all permanent placements, Strata Workforce provides a sliding scale 100-day rebate or complimentary replacement guarantee. If a candidate leaves or fails probationary standards within 100 days through no fault of client redundancy, an immediate replacement search is executed at zero additional fee.'
+      },
+      {
+        heading: '3. Compliance & Insurance Warranties',
+        body: 'Strata maintains £10,000,000 Employers Liability insurance, £10,000,000 Public Liability insurance, and £5,000,000 Professional Indemnity coverage. All personnel supplied undergo audited pre-vetting prior to arrival on client sites.'
+      }
+    ]
   }
 };
+
+export const CANDIDATE_WORKFLOW: WorkflowStep[] = [
+  {
+    id: 'cand-01',
+    stepNumber: '01',
+    title: 'Discover & Apply',
+    subtitle: 'Targeted search or CV drop',
+    timeframe: 'Under 2 Minutes',
+    description: 'Explore verified vacancies with transparent pay rates and clear shift schedules across the UK, or submit an open registration with your CV.',
+    keyDeliverables: [
+      'Filtered search by sector, location, and contract type',
+      'Transparent £/hr or annual salary disclosures',
+      'Instant mobile-friendly CV submission'
+    ],
+    audience: 'candidate',
+    iconName: 'Search'
+  },
+  {
+    id: 'cand-02',
+    stepNumber: '02',
+    title: 'Digital Screening',
+    subtitle: 'Skills & sector matching',
+    timeframe: 'Within 4 Hours',
+    description: 'A dedicated recruitment consultant reviews your experience, qualifications, and shift preferences to identify matching opportunities.',
+    keyDeliverables: [
+      'Specialist consultant telephone or video consultation',
+      'Career aspiration and salary expectation alignment',
+      'Immediate vacancy shortlisting'
+    ],
+    audience: 'candidate',
+    iconName: 'FileCheck2'
+  },
+  {
+    id: 'cand-03',
+    stepNumber: '03',
+    title: 'Compliance & RTW',
+    subtitle: 'Digital ID & right-to-work audit',
+    timeframe: 'Same Day Check',
+    description: 'Effortlessly upload statutory right-to-work documents (passport, share code, address proof) through our secure, encrypted digital portal.',
+    keyDeliverables: [
+      'Home Office share code / passport biometric verification',
+      'DBS / CSCS / NMC / DVLA licence authenticity check',
+      'Zero fee guarantee — no charges for registration'
+    ],
+    audience: 'candidate',
+    iconName: 'ShieldCheck'
+  },
+  {
+    id: 'cand-04',
+    stepNumber: '04',
+    title: 'Interview & Briefing',
+    subtitle: 'Comprehensive role preparation',
+    timeframe: '24–48 Hours',
+    description: 'Receive in-depth client briefs, interview coaching, site travel details, and safety requirements before meeting the employer or starting shifts.',
+    keyDeliverables: [
+      'In-depth role specification and site culture briefing',
+      'Interview guidance and competency question preparation',
+      'Full shift schedule, uniform, and PPE provision'
+    ],
+    audience: 'candidate',
+    iconName: 'UserCheck'
+  },
+  {
+    id: 'cand-05',
+    stepNumber: '05',
+    title: 'Placement & Weekly Pay',
+    subtitle: 'Guaranteed Friday payments',
+    timeframe: 'Weekly on Friday',
+    description: 'Begin your assignment with full support. Submit digital timesheets and enjoy guaranteed weekly pay with full PAYE holiday accrual and pension.',
+    keyDeliverables: [
+      'Digital timesheet sign-off via mobile',
+      'Itemised payslip with PAYE/CIS/Umbrella transparency',
+      'Dedicated 24/7 consultant on-call support'
+    ],
+    audience: 'candidate',
+    iconName: 'Banknote'
+  },
+  {
+    id: 'cand-06',
+    stepNumber: '06',
+    title: 'Growth & Progression',
+    subtitle: 'CPD, temp-to-perm & upskilling',
+    timeframe: 'Ongoing Development',
+    description: 'Access accredited training modules, health & safety certifications, and clear pathways to transition from temporary contracts to permanent careers.',
+    keyDeliverables: [
+      'Funded NVQ and vocational training pathways',
+      'Structured temp-to-perm conversion opportunities',
+      'Priority access to high-value executive openings'
+    ],
+    audience: 'candidate',
+    iconName: 'TrendingUp'
+  }
+];
+
+export const EMPLOYER_WORKFLOW: WorkflowStep[] = [
+  {
+    id: 'emp-01',
+    stepNumber: '01',
+    title: 'Needs Consultation',
+    subtitle: 'Scoping workforce requirements',
+    timeframe: 'Within 60 Minutes',
+    description: 'Engage with our sector specialists to define headcount, required certifications, shift rotas, and SLA delivery milestones.',
+    keyDeliverables: [
+      'Detailed job specification & competency profiling',
+      'Local market salary and hourly rate benchmarking',
+      'Clear, agreed Service Level Agreement (SLA)'
+    ],
+    audience: 'employer',
+    iconName: 'ClipboardList'
+  },
+  {
+    id: 'emp-02',
+    stepNumber: '02',
+    title: 'Talent Sourcing',
+    subtitle: 'Multi-channel pre-vetted search',
+    timeframe: '4–24 Hours',
+    description: 'We activate our proprietary database of 45,000+ pre-vetted UK workers alongside targeted headhunting and digital attraction campaigns.',
+    keyDeliverables: [
+      'Instant access to verified regional talent pools',
+      'Automated competency testing & initial telephone interviews',
+      'Elimination of unvetted applicants'
+    ],
+    audience: 'employer',
+    iconName: 'Users'
+  },
+  {
+    id: 'emp-03',
+    stepNumber: '03',
+    title: 'Audited Shortlist',
+    subtitle: '100% compliant profiles presented',
+    timeframe: '12–48 Hours',
+    description: 'Receive an executive summary of top-ranked candidates with verified Right-to-Work, references, and relevant skill assessments.',
+    keyDeliverables: [
+      'Standardised candidate profiles with skill summaries',
+      'Pre-checked DBS, CSCS, NMC, or driver credentials',
+      'Seamless interview scheduling directly into your diary'
+    ],
+    audience: 'employer',
+    iconName: 'CheckSquare'
+  },
+  {
+    id: 'emp-04',
+    stepNumber: '04',
+    title: 'Rapid Deployment',
+    subtitle: 'Site induction & mobilisation',
+    timeframe: 'Under 4 Hours / Agreed Date',
+    description: 'Candidates arrive pre-briefed on site policies, wearing compliant PPE, and ready for work with digital check-in protocols.',
+    keyDeliverables: [
+      'Comprehensive site induction and health & safety briefing',
+      'Full PPE verification (hi-vis, safety boots, sector kit)',
+      'On-site check-in coordinator for volume deployments'
+    ],
+    audience: 'employer',
+    iconName: 'Truck'
+  },
+  {
+    id: 'emp-05',
+    stepNumber: '05',
+    title: 'Workforce Governance',
+    subtitle: 'Real-time attendance & AWR tracking',
+    timeframe: 'Continuous Operational Oversight',
+    description: 'Manage shifts with automated attendance tracking, replacement cover guarantees within 60 minutes, and strict AWR 12-week compliance auditing.',
+    keyDeliverables: [
+      'Live attendance and shift completion monitoring',
+      'Immediate backfill guarantee for sickness or absence',
+      'Automated AWR (Agency Workers Regulations) tenure tracking'
+    ],
+    audience: 'employer',
+    iconName: 'BarChart'
+  },
+  {
+    id: 'emp-06',
+    stepNumber: '06',
+    title: 'Billing & Account Review',
+    subtitle: 'Transparent consolidated invoicing',
+    timeframe: 'Weekly Invoicing & Monthly KPI Audits',
+    description: 'Receive consolidated weekly invoices aligned to approved digital timesheets, accompanied by strategic quarterly workforce reviews.',
+    keyDeliverables: [
+      'Single consolidated weekly electronic invoice',
+      'Complete spend transparency and cost-per-hire analytics',
+      '100-day permanent replacement guarantee protection'
+    ],
+    audience: 'employer',
+    iconName: 'FileSpreadsheet'
+  }
+];
+
+export const REQUIRED_DOCUMENTS: DocumentItem[] = [
+  {
+    id: 'doc-rtw-passport',
+    category: 'Right to Work',
+    name: 'Valid UK / Irish Passport or Home Office Share Code',
+    description: 'Original biometric passport or digital share code verifying legal entitlement to work in the United Kingdom without restrictions.',
+    mandatory: true,
+    acceptedFormats: 'Original document / Share Code (9 alphanumeric digits)',
+    targetAudience: 'candidate'
+  },
+  {
+    id: 'doc-proof-address',
+    category: 'Identity & Address',
+    name: 'Proof of Residential Address',
+    description: 'Utility bill, council tax statement, or bank statement issued in your name within the last 3 calendar months.',
+    mandatory: true,
+    acceptedFormats: 'PDF statement or clear scan/photo showing date and address',
+    targetAudience: 'candidate'
+  },
+  {
+    id: 'doc-national-insurance',
+    category: 'Tax & Compliance',
+    name: 'Official Proof of National Insurance (NI)',
+    description: 'HMRC tax coding notice, P45, P60, or official NI card confirming your statutory National Insurance number.',
+    mandatory: true,
+    acceptedFormats: 'HMRC document, P45/P60, or Government Gateway printout',
+    targetAudience: 'candidate'
+  },
+  {
+    id: 'doc-bank-details',
+    category: 'Payroll',
+    name: 'UK Bank Account Details',
+    description: 'Account holder name, Sort Code (6 digits), and Account Number (8 digits) for weekly BACS salary payments every Friday.',
+    mandatory: true,
+    acceptedFormats: 'Bank statement header or bank card confirmation',
+    targetAudience: 'candidate'
+  },
+  {
+    id: 'doc-references',
+    category: 'Vetting',
+    name: 'Employment & Character References (2 Years)',
+    description: 'Contact details (name, corporate email, phone, organisation) for two verifiable supervisory referees from the last 24 months.',
+    mandatory: true,
+    acceptedFormats: 'Corporate referee contact details and written reference letters',
+    targetAudience: 'candidate'
+  },
+  {
+    id: 'doc-sector-licence',
+    category: 'Sector Qualifications',
+    name: 'Sector Credentials & Licences',
+    description: 'Enhanced DBS certificate (care/education), CSCS/CPCS card (construction), NMC PIN (nursing), C+E/CPC/Tacho (driving), or FLT licence (logistics).',
+    mandatory: false,
+    acceptedFormats: 'Original card, certificate, or registration number for portal check',
+    targetAudience: 'candidate'
+  },
+  {
+    id: 'doc-emp-terms',
+    category: 'Commercial Agreement',
+    name: 'Signed Terms of Business & Service SLA',
+    description: 'Outlines standard pay rates, charge markups, 100-day replacement guarantee, payment credit terms (typically 14–30 days), and agreed staffing SLAs.',
+    mandatory: true,
+    acceptedFormats: 'Signed electronic Master Services Agreement (MSA)',
+    targetAudience: 'employer'
+  },
+  {
+    id: 'doc-emp-jobspec',
+    category: 'Operational',
+    name: 'Job Description & Shift Rota Profile',
+    description: 'Defines required headcounts, skill competencies, hourly pay rate, shift timings (e.g. 4-on-4-off), site address, and designated site contact.',
+    mandatory: true,
+    acceptedFormats: 'Word / PDF / Online Order Form specification',
+    targetAudience: 'employer'
+  },
+  {
+    id: 'doc-emp-hs',
+    category: 'Health & Safety',
+    name: 'Site Health & Safety Induction & RAMS Pack',
+    description: 'Site risk assessments, fire evacuation protocols, PPE requirements, and hazardous machinery guidelines for incoming temporary personnel.',
+    mandatory: true,
+    acceptedFormats: 'Site Induction Checklist & Risk Assessment Document',
+    targetAudience: 'employer'
+  },
+  {
+    id: 'doc-emp-awr',
+    category: 'Statutory Compliance',
+    name: 'AWR (Agency Workers Regulations) Comparator Details',
+    description: 'Basic working and employment conditions (pay rate, overtime, holiday entitlement) applicable to permanent employees doing identical work.',
+    mandatory: true,
+    acceptedFormats: 'AWR Comparator Declaration Form',
+    targetAudience: 'employer'
+  }
+];
+
+export const COMPLIANCE_STANDARDS: ComplianceStandard[] = [
+  {
+    id: 'glaa',
+    name: 'Gangmasters and Labour Abuse Authority',
+    body: 'GLAA Licensed Partner',
+    badge: 'GLAA Licensed',
+    description: 'Licensed under the Gangmasters (Licensing) Act 2004 to protect vulnerable workers from exploitation across agriculture, food packaging, and processing.',
+    statutoryRef: 'Licence No: STR-GLAA-8820',
+    keyProtections: [
+      'Strict prohibition of illegal deductions or accommodation scams',
+      'Mandatory living wage audit and statutory holiday pay tracking',
+      'Unannounced site audits and anti-modern slavery inspections'
+    ]
+  },
+  {
+    id: 'rec',
+    name: 'Recruitment & Employment Confederation',
+    body: 'REC Audited Member',
+    badge: 'REC Audited Gold',
+    description: 'Certified to the highest professional standard in UK recruitment practice, verifying rigorous compliance, ethics, and candidate care.',
+    statutoryRef: 'REC Membership No: 994218',
+    keyProtections: [
+      'Adherence to the REC Code of Professional Practice',
+      'Full compliance with the Conduct of Employment Agencies Regulations 2003',
+      'Zero candidate fees guaranteed across all sectors'
+    ]
+  },
+  {
+    id: 'modern-slavery-standard',
+    name: 'Modern Slavery & Human Trafficking Prevention',
+    body: 'Section 54 Modern Slavery Act 2015',
+    badge: 'Anti-Slavery Certified',
+    description: 'Continuous proactive safeguards to eradicate forced labour, worker exploitation, and undocumented supply chain sub-contracting.',
+    statutoryRef: 'Annual Statement Registered FY26',
+    keyProtections: [
+      'Automated red-flagging of duplicate bank accounts and shared residential addresses',
+      'Confidential whistleblowing hotline operated 24/7 (0800 246 8900)',
+      'Mandatory face-to-face identity authentication prior to deployment'
+    ]
+  },
+  {
+    id: 'uk-gdpr',
+    name: 'UK GDPR & Data Protection Act 2018',
+    body: 'Information Commissioner’s Office (ICO)',
+    badge: 'ICO Registered Z918231',
+    description: 'All candidate CVs, identity documents, and employer commercial contracts are secured using 256-bit AES encryption in UK-sovereign data centres.',
+    statutoryRef: 'ICO Registration No: ZB918231',
+    keyProtections: [
+      'Full Subject Access Request (SAR) compliance within 30 days',
+      'No third-party data sharing without explicit informed consent',
+      'ISO 27001-aligned data security and document shredding policies'
+    ]
+  }
+];
+
