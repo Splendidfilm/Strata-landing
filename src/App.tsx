@@ -3,7 +3,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ServicesPreview } from './components/ServicesPreview';
 import { FeaturedJobs } from './components/FeaturedJobs';
-import { WorkflowsSection } from './components/WorkflowsSection';
 import { EmployerSection } from './components/EmployerSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { AboutSection } from './components/AboutSection';
@@ -128,29 +127,21 @@ export default function App() {
           onClearFilters={handleClearFilters}
         />
 
-        {/* 5. WORKFLOWS & RECRUITMENT JOURNEY */}
-        <WorkflowsSection
-          onOpenCandidateRegister={handleOpenCandidateRegister}
-          onOpenEmployerModal={() => handleOpenEmployerModal()}
-          onOpenDocumentsModal={handleOpenDocumentsModal}
-          onNavigateToJobs={handleNavigateToJobs}
-        />
-
-        {/* 6. EMPLOYER CTA */}
+        {/* EMPLOYER CTA */}
         <EmployerSection
           onRequestServices={() => handleOpenEmployerModal()}
           onOpenDocumentsModal={() => handleOpenDocumentsModal('employer')}
         />
 
-        {/* 7. WHY CHOOSE US */}
+        {/* WHY STRATA */}
         <WhyChooseUs />
 
-        {/* 8. ABOUT SECTION */}
+        {/* ABOUT */}
         <AboutSection
           onRequestQuote={() => handleOpenEmployerModal()}
         />
 
-        {/* 9. SECTORS */}
+        {/* SECTORS */}
         <SectorsGrid
           onSelectSector={handleSelectSector}
         />

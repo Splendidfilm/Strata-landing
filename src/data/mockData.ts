@@ -9,13 +9,18 @@ import {
   DocumentItem,
   ComplianceStandard,
 } from '../types';
+import heroImage from '../assets/images/hero_uk_workforce_1790590906400.jpg';
+import employerImage from '../assets/images/employer_workforce_solutions_1790590922449.jpg';
+import galleryEventsImage from '../assets/images/gallery_recruitment_events_1790590933797.jpg';
+import galleryTrainingImage from '../assets/images/gallery_workforce_training_1790590946836.jpg';
+import galleryTeamImage from '../assets/images/gallery_team_community_1790590958746.jpg';
 
 export const ASSETS = {
-  hero: '/src/assets/images/hero_uk_workforce_1790590906400.jpg',
-  employer: '/src/assets/images/employer_workforce_solutions_1790590922449.jpg',
-  galleryEvents: '/src/assets/images/gallery_recruitment_events_1790590933797.jpg',
-  galleryTraining: '/src/assets/images/gallery_workforce_training_1790590946836.jpg',
-  galleryTeam: '/src/assets/images/gallery_team_community_1790590958746.jpg',
+  hero: heroImage,
+  employer: employerImage,
+  galleryEvents: galleryEventsImage,
+  galleryTraining: galleryTrainingImage,
+  galleryTeam: galleryTeamImage,
 };
 
 export const SERVICES_DATA: WorkforceService[] = [
