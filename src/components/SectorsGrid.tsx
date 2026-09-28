@@ -2,4 +2,31 @@ import React, { useRef } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SECTORS_DATA } from '../data/mockData';
 interface SectorsGridProps { onSelectSector: (sectorName: string) => void; }
-export const SectorsGrid: React.FC<SectorsGridProps> = ({ onSelectSector }) => { const track = useRef<HTMLDivElement>(null); return <section id="sectors" className="sectors-section"><div className="section-inner"><div className="section-heading-row"><div><p className="eyebrow">Where we work</p><h2>Across the sectors that keep Britain moving.</h2></div><div className="carousel-controls dark-controls"><button aria-label="Scroll sectors left" onClick={() => track.current?.scrollBy({ left: -260, behavior: 'smooth' })}><ArrowLeft size={18}/></button><button aria-label="Scroll sectors right" onClick={() => track.current?.scrollBy({ left: 260, behavior: 'smooth' })}><ArrowRight size={18}/></button></div></div><div className="sectors-track" ref={track}>{SECTORS_DATA.map((sector) => <button key={sector.id} onClick={() => onSelectSector(sector.name)}>{sector.name}<span>{sector.activeVacancies} roles</span></button>)}</div></div></section>; };
+export const SectorsGrid: React.FC<SectorsGridProps> = ({ onSelectSector }) => { const track = useRef<HTMLDivElement>(null); return (
+<section id="sectors" className="sectors-section">
+  <div className="section-inner"><div className="section-heading-row">
+    <div>
+      <p className="eyebrow">Where we work</p>
+      <h2>Across the sectors that keep Britain moving.</h2>
+      </div><div className="carousel-controls dark-controls">
+        <button aria-label="Scroll sectors left" onClick={() => track.current?.scrollBy({ left: -260, behavior: 'smooth' })}>
+          <ArrowLeft size={18}/>
+          </button>
+          <button aria-label="Scroll sectors right" onClick={() => track.current?.scrollBy({ left: 260, behavior: 'smooth' })}>
+            <ArrowRight size={18}/>
+            </button>
+            </div>
+            </div>
+            <div
+            className="sectors-track"
+            ref={track}>
+              {SECTORS_DATA.map((sector) => <button key={sector.id} onClick={() => onSelectSector(sector.name)}>
+              {sector.name}
+              <span>
+                {sector.activeVacancies} roles
+                </span>
+                </button>)}
+                </div>
+                </div>
+                </section>
+) };

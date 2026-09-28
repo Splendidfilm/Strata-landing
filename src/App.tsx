@@ -40,14 +40,6 @@ export default function App() {
     sector: '',
   });
 
-  const handleSearch = (keyword: string, location: string, sector: string) => {
-    setJobSearchFilter({ keyword, location, sector });
-    const jobsElement = document.getElementById('jobs');
-    if (jobsElement) {
-      jobsElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleClearFilters = () => {
     setJobSearchFilter({
       keyword: '',
@@ -107,11 +99,8 @@ export default function App() {
       <main className="flex-1">
         {/* 2. HERO */}
         <Hero
-          onSearch={handleSearch}
           onOpenEmployerModal={() => handleOpenEmployerModal()}
           onNavigateToJobs={handleNavigateToJobs}
-          onOpenCandidateRegister={handleOpenCandidateRegister}
-          onOpenDocumentsModal={() => handleOpenDocumentsModal('candidate')}
         />
 
         {/* 3. SERVICES PREVIEW */}

@@ -57,11 +57,11 @@ export const JobModal: React.FC<JobModalProps> = ({ job, onClose }) => {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-xs"
+      className="strata-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-xs"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200"
+        className="strata-modal-panel bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}

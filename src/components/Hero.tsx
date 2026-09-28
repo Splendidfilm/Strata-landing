@@ -1,66 +1,212 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, Search, MapPin } from 'lucide-react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ASSETS } from '../data/mockData';
+import '../index.css';
 
 interface HeroProps {
-  onSearch: (keyword: string, location: string, sector: string) => void;
   onOpenEmployerModal: () => void;
   onNavigateToJobs: () => void;
-  onOpenCandidateRegister?: () => void;
-  onOpenDocumentsModal?: () => void;
 }
 
 const slides = [
-  { title: 'Connecting people with opportunity.', copy: 'We help people find fulfilling work and help UK businesses build the teams they need.', image: ASSETS.hero, alt: 'Professionals working together in a modern workplace', action: 'Find a Job', audience: 'For people ready for their next step' },
-  { title: 'The right people for the right roles.', copy: 'Thoughtful recruitment and dependable workforce support, shaped around your business.', image: ASSETS.employer, alt: 'Workforce professionals discussing staffing needs', action: 'Hire Staff', audience: 'For employers building stronger teams' },
-  { title: 'Your next opportunity starts here.', copy: 'Explore roles across the UK, with people who take the time to understand what matters to you.', image: ASSETS.galleryTeam, alt: 'A team of colleagues at a workforce event', action: 'Explore Jobs', audience: 'A better way to move your career forward' },
+  {
+    title: 'Connecting people with opportunity.',
+    text: 'Browse open roles and apply in minutes.',
+    image: ASSETS.hero,
+    alt: 'Professionals working together in a modern workplace',
+    action: 'Find a Job',
+  },
+  {
+    title: 'The right people for the right roles.',
+    text: 'Tell us what your team needs and we will help you find the right people.',
+    image: ASSETS.employer,
+    alt: 'Workforce professionals discussing staffing needs',
+    action: 'Hire Staff',
+  },
+  {
+    title: 'Your next opportunity starts here.',
+    text: 'See new openings and take the next step in your career.',
+    image: ASSETS.galleryTeam,
+    alt: 'A team of colleagues at a workforce event',
+    action: 'Explore Jobs',
+  },
 ];
 
-export const Hero: React.FC<HeroProps> = ({ onSearch, onOpenEmployerModal, onNavigateToJobs }) => {
-  const [active, setActive] = useState(0);
-  const [keyword, setKeyword] = useState('');
-  const [location, setLocation] = useState('');
-  const startX = useRef<number | null>(null);
-  const timer = useRef<number | undefined>(undefined);
-  const next = () => setActive((n) => (n + 1) % slides.length);
-  const previous = () => setActive((n) => (n + slides.length - 1) % slides.length);
-  const manualNext = next;
-  const manualPrevious = previous;
-  useEffect(() => {
-    timer.current = window.setInterval(next, 6500);
-    return () => window.clearInterval(timer.current);
+const BAND_COUNT = 5;
+const AUTOPLAY_INTERVAL = 6500;
+const SWIPE_THRESHOLD = 45;
+
+const cssVars = (vars: Record<string, string | number>) => vars as React.CSSProperties;
+
+export const Hero: React.FC<HeroProps> = ({ onOpenEmployerModal, onNavigateToJobs }) => {
+  const [{ active, prev }, setPosition] = useState({ active: 0, prev: -1 });
+  const [isPaused, setIsPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+
+  const goTo = useCallback((index: number) => {
+    setPosition((current) => (current.active === index ? current : { active: index, prev: current.active }));
   }, []);
+
+  const showNext = useCallback(() => {
+    setPosition((current) => ({ active: (current.active + 1) % slides.length, prev: current.active }));
+  }, []);
+
+  const showPrevious = useCallback(() => {
+    setPosition((current) => ({
+      active: (current.active + slides.length - 1) % slides.length,
+      prev: current.active,
+    }));
+  }, []);
+
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(query.matches);
+
+    const onChange = (event: MediaQueryListEvent) => setPrefersReducedMotion(event.matches);
+    query.addEventListener('change', onChange);
+    return () => query.removeEventListener('change', onChange);
+  }, []);
+
+  const isPlaying = !isPaused && !prefersReducedMotion;
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const timeoutId = window.setTimeout(showNext, AUTOPLAY_INTERVAL);
+    return () => window.clearTimeout(timeoutId);
+  }, [active, isPlaying, showNext]);
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLElement>) => {
+    touchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLElement>) => {
+    if (touchStartX.current === null) return;
+
+    const deltaX = event.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+    if (deltaX < 0) {
+      showNext();
+    } else {
+      showPrevious();
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key === 'ArrowRight') showNext();
+    if (event.key === 'ArrowLeft') showPrevious();
+  };
+
   const slide = slides[active];
-  const act = () => active === 1 ? onOpenEmployerModal() : onNavigateToJobs();
-  return <>
-    <section aria-roledescription="carousel" aria-label="Strata Workforce introduction" className="hero-carousel" onTouchStart={(e) => { startX.current = e.touches[0].clientX; }} onTouchEnd={(e) => { if (startX.current !== null) { const delta = e.changedTouches[0].clientX - startX.current; if (Math.abs(delta) > 45) delta < 0 ? manualNext() : manualPrevious(); } startX.current = null; }}>
-      <div className="hero-image" key={slide.image} style={{ backgroundImage: `linear-gradient(90deg, rgba(8,24,39,.88) 0%, rgba(8,24,39,.68) 42%, rgba(8,24,39,.12) 100%), url("${slide.image}")` }} role="img" aria-label={slide.alt} />
+
+  const handlePrimaryAction = () => {
+    if (active === 1) {
+      onOpenEmployerModal();
+      return;
+    }
+
+    onNavigateToJobs();
+  };
+
+  return (
+    <section
+      aria-roledescription="carousel"
+      aria-label="Strata Workforce introduction"
+      className="hero-carousel"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onKeyDown={handleKeyDown}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+    >
+      {/* Each photo is cut into horizontal strata that slide in from alternating sides */}
+      <div className="hero-media" aria-hidden="true">
+        {slides.map((item, index) => (
+          <div
+            key={item.title}
+            className={`hero-slide${index === active ? ' is-active' : ''}${index === prev ? ' is-prev' : ''}`}
+          >
+            {Array.from({ length: BAND_COUNT }, (_, band) => (
+              <div key={band} className="hero-band" style={cssVars({ '--i': band })}>
+                <div className="hero-band-img" style={{ backgroundImage: `url("${item.image}")` }} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div className="hero-scrim" aria-hidden="true" />
+
       <div className="hero-content">
-        <div className="hero-copy" key={active}>
-          <p className="eyebrow light-eyebrow">UK recruitment and workforce solutions</p>
-          <h1>{slide.title}</h1>
-          <p className="hero-description">{slide.copy}</p>
+        <div
+          className="hero-copy"
+          key={active}
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${active + 1} of ${slides.length}: ${slide.alt}`}
+          aria-live={isPlaying ? 'off' : 'polite'}
+        >
+          <h1>
+            {slide.title.split(' ').map((word, index) => (
+              <React.Fragment key={`${word}-${index}`}>
+                <span className="hero-word">
+                  <span style={cssVars({ '--w': index })}>{word}</span>
+                </span>{' '}
+              </React.Fragment>
+            ))}
+          </h1>
+          <p className="hero-text">{slide.text}</p>
           <div className="hero-actions">
-            <button className="button button-light" onClick={act}>{slide.action}<ArrowRight size={17}/></button>
-            {active !== 1 && <button className="button button-outline" onClick={onOpenEmployerModal}>For Employers<ArrowRight size={17}/></button>}
+            <button className="button button-light" type="button" onClick={handlePrimaryAction}>
+              {slide.action}
+              <ArrowRight size={18} aria-hidden="true" />
+            </button>
+            {active !== 1 && (
+              <button className="button button-outline" type="button" onClick={onOpenEmployerModal}>
+                For Employers
+              </button>
+            )}
           </div>
         </div>
-        <div className="hero-controls">
-          <span className="hero-audience">{slide.audience}</span>
-          <div className="carousel-controls">
-            <button aria-label="Previous slide" onClick={manualPrevious}><ArrowLeft size={18}/></button>
-            <div className="carousel-dots">{slides.map((s, i) => <button key={s.title} aria-label={`Go to slide ${i + 1}`} aria-current={active === i} onClick={() => setActive(i)} />)}</div>
-            <button aria-label="Next slide" onClick={manualNext}><ArrowRight size={18}/></button>
+
+        <div className="hero-nav">
+          <div className="hero-layers" role="group" aria-label="Choose a slide">
+            {slides.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                className={`layer${index === active ? ' is-active' : ''}`}
+                style={cssVars({ '--k': index })}
+                aria-label={`Go to slide ${index + 1}`}
+                aria-current={index === active}
+                onClick={() => goTo(index)}
+              >
+                <span
+                  key={index === active ? `run-${active}` : `idle-${index}`}
+                  className="layer-fill"
+                  style={{
+                    animationDuration: `${AUTOPLAY_INTERVAL}ms`,
+                    animationPlayState: isPlaying ? 'running' : 'paused',
+                  }}
+                />
+              </button>
+            ))}
+          </div>
+
+          <div className="hero-arrows">
+            <button type="button" className="hero-arrow" aria-label="Previous slide" onClick={showPrevious}>
+              <ChevronLeft size={20} aria-hidden="true" />
+            </button>
+            <button type="button" className="hero-arrow" aria-label="Next slide" onClick={showNext}>
+              <ChevronRight size={20} aria-hidden="true" />
+            </button>
           </div>
         </div>
       </div>
     </section>
-    <section className="job-search-wrap" aria-label="Search jobs">
-      <form className="job-search" onSubmit={(e) => { e.preventDefault(); onSearch(keyword, location, ''); }}>
-        <label><span>Job title or keyword</span><div><Search size={18}/><input value={keyword} onChange={(e) => setKeyword(e.target.value)} placeholder="e.g. care assistant" /></div></label>
-        <label><span>Location</span><div><MapPin size={18}/><input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Town, city or postcode" /></div></label>
-        <button className="button button-primary" type="submit">Search Jobs<ArrowRight size={17}/></button>
-      </form>
-    </section>
-  </>;
+  );
 };

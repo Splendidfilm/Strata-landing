@@ -37,8 +37,8 @@ export const DocumentsModal: React.FC<DocumentsModalProps> = ({
   );
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
-      <div className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden my-8">
+    <div role="dialog" aria-modal="true" aria-label="Candidate and employer documents" className="strata-modal-backdrop fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+      <div className="strata-modal-panel relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden my-8">
         {/* Header */}
         <div className="px-6 sm:px-8 pt-8 pb-6 border-b border-slate-100 bg-[#fbfbfa] flex items-start justify-between">
           <div>
