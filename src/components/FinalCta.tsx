@@ -15,39 +15,39 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onFindJob, onHireStaff }) =>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           
-          <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-400 mb-4 flex items-center justify-center gap-2 font-display">
+          <div className="text-xs font-semibold uppercase tracking-wider text-blue-400 mb-3 flex items-center justify-center gap-2 font-display">
             <span className="w-2 h-2 rounded-full bg-blue-400" />
             <span>09 / Take The Next Step</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-display mb-6 text-white text-balance leading-[1.08]">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-display mb-4 text-white text-balance leading-[1.12]">
             Ready for your next opportunity?
           </h2>
 
-          <p className="text-lg sm:text-xl text-slate-300 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-10 max-w-xl mx-auto">
             Whether you are taking the next step in your professional career or seeking reliable personnel to power your operations, our dedicated UK consultants are ready to assist.
           </p>
 
           {/* DUAL CTAs (HIGH IMPACT) */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-14">
             <button
               type="button"
               onClick={onFindJob}
-              className="w-full sm:w-auto px-9 py-4.5 bg-white hover:bg-slate-100 text-slate-950 text-sm font-bold tracking-wider uppercase rounded-xl transition-all shadow-xl flex items-center justify-center gap-2.5 group"
+              className="w-full sm:w-auto h-11 px-7 bg-white hover:bg-slate-100 text-slate-950 text-xs font-semibold rounded-lg transition-colors shadow-xs flex items-center justify-center gap-2 group whitespace-nowrap"
             >
               <Briefcase className="w-4 h-4 text-slate-900" />
               <span>Find a Job</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
             </button>
 
             <button
               type="button"
               onClick={onHireStaff}
-              className="w-full sm:w-auto px-9 py-4.5 bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 text-sm font-bold tracking-wider uppercase rounded-xl transition-all shadow-lg flex items-center justify-center gap-2.5 group"
+              className="w-full sm:w-auto h-11 px-7 bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 text-xs font-semibold rounded-lg transition-colors shadow-xs flex items-center justify-center gap-2 group whitespace-nowrap"
             >
               <Building2 className="w-4 h-4 text-blue-400" />
               <span>Hire Staff</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
             </button>
           </div>
 

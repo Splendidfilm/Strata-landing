@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Menu, X, ArrowUpRight, Phone, Briefcase, Users, FileText } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   onOpenEmployerModal: (serviceId?: string) => void;
   onNavigateToJobs: () => void;
-  onOpenCandidateRegister: () => void;
-  onOpenDocumentsModal: () => void;
+  onOpenCandidateRegister?: () => void;
+  onOpenDocumentsModal?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,33 +15,81 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenDocumentsModal,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Desktop Center Navigation Links in exact required order
   const navLinks = [
-    { label: 'Find a Job', href: '#jobs', onClick: onNavigateToJobs },
-    { label: 'For Employers', href: '#employers' },
-    { label: 'Services', href: '#services' },
-    { label: 'How It Works', href: '#workflow' },
-    { label: 'Documents & RTW', href: '#compliance', onClick: onOpenDocumentsModal },
-    { label: 'Sectors', href: '#sectors' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Contact', href: '#contact' },
+    {
+      label: 'Find a Job',
+      href: '#jobs',
+      onClick: onNavigateToJobs,
+    },
+    {
+      label: 'For Employers',
+      href: '#employers',
+    },
+    {
+      label: 'Services',
+      href: '#services',
+    },
+    {
+      label: 'About Us',
+      href: '#about',
+    },
+    {
+      label: 'Resources',
+      href: '#workflow',
+      onClick: onOpenDocumentsModal,
+    },
+    {
+      label: 'Contact',
+      href: '#contact',
+    },
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 transition-all">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_3px_0_rgba(15,23,42,0.04)]'
+          : 'bg-[#fbfbfa]/90 backdrop-blur-sm border-b border-slate-200/50'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Zone 1: Single element wordmark per Top Bar Contract */}
-          <a
-            href="#"
-            className="text-2xl font-extrabold tracking-tight text-slate-950 font-display flex items-center gap-2 group"
-          >
-            <span className="w-2.5 h-6 bg-slate-950 rounded-xs group-hover:bg-blue-600 transition-colors inline-block" />
-            <span>STRATA<span className="text-slate-500 font-semibold ml-1.5">WORKFORCE</span></span>
-          </a>
+          {/* ================= LEFT: LOGO / WORDMARK ================= */}
+          <div className="flex-shrink-0">
+            <a
+              href="#"
+              className="flex items-center gap-2.5 focus:outline-none group"
+              aria-label="Strata Workforce Homepage"
+            >
+              {/* Refined corporate architectural mark */}
+              <span className="w-2.5 h-6 bg-slate-900 rounded-[2px] group-hover:bg-blue-600 transition-colors inline-block" />
+              <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-950 font-display">
+                STRATA
+                <span className="font-semibold text-slate-500 text-sm sm:text-base tracking-normal ml-1.5">
+                  WORKFORCE
+                </span>
+              </span>
+            </a>
+          </div>
 
-          {/* Zone 2: Nav links with refined legible typography */}
-          <nav className="hidden xl:flex items-center gap-6 text-[14px] font-semibold text-slate-700">
+          {/* ================= CENTER: NAVIGATION LINKS ================= */}
+          <nav
+            aria-label="Main Navigation"
+            className="hidden md:flex items-center justify-center gap-3.5 lg:gap-6 xl:gap-8"
+          >
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -52,93 +100,54 @@ export const Navbar: React.FC<NavbarProps> = ({
                     link.onClick();
                   }
                 }}
-                className="hover:text-slate-950 transition-colors py-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-slate-950 hover:after:w-full after:transition-all"
+                className="relative py-2 text-[13px] lg:text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors duration-150 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-slate-900 after:transition-all after:duration-200 hover:after:w-full whitespace-nowrap"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Zone 3: Primary actions with clear hierarchy */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={onOpenCandidateRegister}
-              className="px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-xl transition-colors whitespace-nowrap"
-            >
-              Register CV
-            </button>
-            <button
-              type="button"
-              onClick={() => onOpenEmployerModal()}
-              className="px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 hover:bg-blue-100 hover:text-blue-900 border border-blue-200/80 rounded-xl transition-colors whitespace-nowrap"
-            >
-              Hire Staff
-            </button>
+          {/* ================= RIGHT: CTAS (FIND A JOB & HIRE STAFF) ================= */}
+          <div className="hidden md:flex items-center gap-2 lg:gap-3 flex-shrink-0">
+            {/* Secondary / Outline Button: "Find a Job" */}
             <button
               type="button"
               onClick={onNavigateToJobs}
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-slate-950 hover:bg-slate-800 rounded-xl shadow-xs hover:shadow transition-all whitespace-nowrap flex items-center gap-1.5 group"
+              className="h-9 lg:h-10 px-3 lg:px-4 text-xs font-semibold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 rounded-lg transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-1 cursor-pointer"
             >
-              <span>Find a Job</span>
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Find a Job
+            </button>
+
+            {/* Primary Filled Button: "Hire Staff" */}
+            <button
+              type="button"
+              onClick={() => onOpenEmployerModal()}
+              className="h-9 lg:h-10 px-3.5 lg:px-4.5 text-xs font-semibold text-white bg-slate-950 hover:bg-slate-800 rounded-lg transition-colors whitespace-nowrap shadow-xs focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-1 cursor-pointer"
+            >
+              Hire Staff
             </button>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex items-center xl:hidden">
+          {/* ================= MOBILE: HAMBURGER BUTTON ================= */}
+          <div className="flex items-center md:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950"
+              className="md:hidden p-2 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900 transition-colors cursor-pointer"
+              aria-expanded={mobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 md:hidden" /> : <Menu className="w-6 h-6 md:hidden" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile navigation drawer */}
+      {/* ================= MOBILE NAVIGATION PANEL ================= */}
       {mobileMenuOpen && (
-        <div className="xl:hidden border-b border-slate-200 bg-white px-5 pt-4 pb-6 space-y-4">
-          <div className="grid grid-cols-2 gap-3 pb-4 border-b border-slate-100">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onNavigateToJobs();
-              }}
-              className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-slate-950 text-white text-sm font-bold uppercase tracking-wider"
-            >
-              <Briefcase className="w-4 h-4" />
-              <span>Find a Job</span>
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenEmployerModal();
-              }}
-              className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl border border-slate-300 text-slate-900 text-sm font-bold uppercase tracking-wider hover:bg-slate-50"
-            >
-              <Users className="w-4 h-4" />
-              <span>Hire Staff</span>
-            </button>
-          </div>
-
-          <div className="pb-3 border-b border-slate-100">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenCandidateRegister();
-              }}
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-wider"
-            >
-              <FileText className="w-4 h-4" />
-              <span>Register Candidate CV (Zero Fees)</span>
-            </button>
-          </div>
-
-          <div className="flex flex-col space-y-1">
+        <div className="md:hidden border-b border-slate-200 bg-white px-5 pt-3 pb-6 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+          {/* Navigation links - large and easy to tap */}
+          <nav className="flex flex-col divide-y divide-slate-100 mb-6">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -150,19 +159,47 @@ export const Navbar: React.FC<NavbarProps> = ({
                     link.onClick();
                   }
                 }}
-                className="py-2.5 px-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-lg transition-colors"
+                className="py-3.5 text-base font-medium text-slate-800 hover:text-slate-950 active:text-blue-600 transition-colors flex items-center justify-between"
               >
-                {link.label}
+                <span>{link.label}</span>
+                <span className="text-slate-300 text-sm">→</span>
               </a>
             ))}
+          </nav>
+
+          {/* Mobile Action Buttons - Prominently visible and side-by-side or stacked without awkward wrap */}
+          <div className="grid grid-cols-2 gap-3 pt-2">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onNavigateToJobs();
+              }}
+              className="h-11 w-full text-center text-xs font-semibold text-slate-900 bg-white border border-slate-300 hover:bg-slate-50 rounded-lg transition-colors flex items-center justify-center whitespace-nowrap"
+            >
+              Find a Job
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenEmployerModal();
+              }}
+              className="h-11 w-full text-center text-xs font-semibold text-white bg-slate-950 hover:bg-slate-800 rounded-lg transition-colors flex items-center justify-center whitespace-nowrap shadow-xs"
+            >
+              Hire Staff
+            </button>
           </div>
 
-          <div className="pt-4 border-t border-slate-100 text-sm text-slate-600 flex items-center justify-between font-medium">
-            <span className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-slate-800" />
+          {/* Quick contact information */}
+          <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
+            <span>24/7 Operations Desk</span>
+            <a
+              href="tel:08002468900"
+              className="font-semibold text-slate-900 hover:text-blue-600 transition-colors"
+            >
               0800 246 8900
-            </span>
-            <span>UK Nationwide</span>
+            </a>
           </div>
         </div>
       )}

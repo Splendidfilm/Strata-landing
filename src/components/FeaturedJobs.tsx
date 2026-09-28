@@ -194,7 +194,7 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
         </div>
 
         {/* PLATFORM SEARCH & FILTER CONSOLE */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-7 shadow-sm mb-12 space-y-6">
+        <div className="bg-white rounded-xl border border-slate-200/90 p-5 sm:p-6 shadow-xs mb-10 space-y-5">
           
           {/* Top row: Sector segmented tabs with readable text */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-100">
@@ -207,15 +207,15 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
                   key={sector}
                   type="button"
                   onClick={() => setSelectedSector(sector)}
-                  className={`px-4 py-2.5 text-sm font-bold rounded-xl transition-all whitespace-nowrap flex items-center gap-2 ${
+                  className={`px-3.5 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap flex items-center gap-2 ${
                     selectedSector === sector
                       ? 'bg-slate-950 text-white shadow-xs'
                       : 'bg-slate-50 hover:bg-slate-100 text-slate-700'
                   }`}
                 >
                   <span>{sector}</span>
-                  <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md ${
-                    selectedSector === sector ? 'bg-slate-800 text-slate-200' : 'bg-slate-200/80 text-slate-700'
+                  <span className={`text-[11px] font-mono font-semibold px-1.5 py-0.2 rounded ${
+                    selectedSector === sector ? 'bg-slate-800 text-slate-200' : 'bg-slate-200 text-slate-600'
                   }`}>
                     {count}
                   </span>
@@ -225,17 +225,17 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
           </div>
 
           {/* Secondary Filter Controls */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pt-1">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-1">
             
             {/* Left: Employment Type & Rate Type */}
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-1 bg-slate-100 p-1.5 rounded-xl text-sm">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-xs">
                 {typeList.map((type) => (
                   <button
                     key={type}
                     type="button"
                     onClick={() => setSelectedType(type)}
-                    className={`px-3.5 py-1.5 rounded-lg font-bold transition-colors ${
+                    className={`px-3 py-1.5 rounded-md font-semibold transition-colors ${
                       selectedType === type ? 'bg-white text-slate-950 shadow-xs' : 'text-slate-600 hover:text-slate-950'
                     }`}
                   >
@@ -244,12 +244,12 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
                 ))}
               </div>
 
-              <div className="flex items-center gap-1.5 text-sm">
-                <span className="text-slate-500 font-bold mr-1 hidden sm:inline">Pay:</span>
+              <div className="flex items-center gap-1.5 text-xs">
+                <span className="text-slate-500 font-semibold mr-1 hidden sm:inline">Pay:</span>
                 <button
                   type="button"
                   onClick={() => setSelectedRateType('all')}
-                  className={`px-3.5 py-1.5 rounded-xl border text-sm font-semibold ${
+                  className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
                     selectedRateType === 'all'
                       ? 'bg-slate-950 text-white border-slate-950'
                       : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
@@ -260,7 +260,7 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
                 <button
                   type="button"
                   onClick={() => setSelectedRateType('annual')}
-                  className={`px-3.5 py-1.5 rounded-xl border text-sm font-semibold ${
+                  className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
                     selectedRateType === 'annual'
                       ? 'bg-slate-950 text-white border-slate-950'
                       : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
@@ -271,7 +271,7 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
                 <button
                   type="button"
                   onClick={() => setSelectedRateType('hourly')}
-                  className={`px-3.5 py-1.5 rounded-xl border text-sm font-semibold ${
+                  className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
                     selectedRateType === 'hourly'
                       ? 'bg-slate-950 text-white border-slate-950'
                       : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
@@ -283,64 +283,62 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
             </div>
 
             {/* Right: Sort Dropdown & Result Count */}
-            <div className="flex items-center justify-between lg:justify-end gap-4 text-sm">
+            <div className="flex items-center justify-between lg:justify-end gap-3 text-xs">
               <span className="text-slate-600 font-medium">
-                Showing <strong className="text-slate-950 font-bold">{filteredJobs.length}</strong> live vacancies
+                Showing <strong className="text-slate-950 font-semibold">{filteredJobs.length}</strong> live vacancies
               </span>
 
-              <div className="flex items-center gap-2 border border-slate-200 rounded-xl px-3 py-2 bg-white shadow-2xs">
-                <ArrowUpDown className="w-4 h-4 text-slate-500" />
+              <div className="flex items-center gap-1.5 border border-slate-200 rounded-lg px-2.5 py-1.5 bg-white">
+                <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as any)}
                   aria-label="Sort jobs by"
-                  className="bg-transparent text-sm font-bold text-slate-900 focus:outline-none cursor-pointer"
+                  className="bg-transparent text-xs font-semibold text-slate-900 focus:outline-none cursor-pointer"
                 >
                   <option value="recent">Most Recent</option>
                   <option value="salary">Highest Compensation</option>
-                  <option value="urgent">Urgent / Immediate Start</option>
+                  <option value="urgent">Urgent Requirements</option>
                 </select>
               </div>
             </div>
-
           </div>
-
         </div>
 
         {/* JOBS GRID (REAL RECRUITMENT PLATFORM CARDS WITH STRONG TYPOGRAPHY) */}
         {filteredJobs.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-3xl border border-slate-200 p-8 shadow-xs">
-            <Briefcase className="w-12 h-12 text-slate-400 mx-auto mb-3" />
-            <h3 className="text-2xl font-bold text-slate-950 font-display mb-2">
+          <div className="text-center py-16 bg-white rounded-xl border border-slate-200 p-8 shadow-xs">
+            <Briefcase className="w-10 h-10 text-slate-400 mx-auto mb-3" />
+            <h3 className="text-xl font-bold text-slate-950 font-display mb-2">
               No vacancies match your criteria
             </h3>
-            <p className="text-base text-slate-600 mb-6 max-w-md mx-auto">
+            <p className="text-sm text-slate-600 mb-5 max-w-md mx-auto">
               We update our UK job board multiple times daily. Adjust your filters or browse all open opportunities.
             </p>
             <button
               type="button"
               onClick={resetAllFilters}
-              className="px-7 py-3.5 bg-slate-950 text-white text-sm font-bold uppercase tracking-wider rounded-xl hover:bg-slate-800 transition-colors shadow-xs"
+              className="h-10 px-6 bg-slate-950 text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition-colors shadow-xs"
             >
               Reset Filters & Show All
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredJobs.slice(0, visibleCount).map((job) => {
               const isSaved = savedJobIds.includes(job.id);
               return (
                 <div
                   key={job.id}
                   onClick={() => onSelectJob(job)}
-                  className="group bg-white rounded-3xl p-7 sm:p-8 border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between relative"
+                  className="group bg-white rounded-xl p-6 sm:p-7 border border-slate-200/90 hover:border-slate-300 hover:shadow-md transition-all duration-200 cursor-pointer flex flex-col justify-between relative"
                 >
                   <div>
                     {/* Top Status & Verification Row */}
-                    <div className="flex items-center justify-between gap-3 mb-4">
-                      <div className="flex items-center gap-2.5 flex-wrap">
+                    <div className="flex items-center justify-between gap-3 mb-3.5">
+                      <div className="flex items-center gap-2 flex-wrap">
                         {job.urgency && (
-                          <span className={`text-xs font-bold px-3 py-1 rounded-lg ${
+                          <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-md ${
                             job.urgency === 'Immediate Start' || job.urgency === 'Urgent Requirement'
                               ? 'bg-rose-50 text-rose-800 border border-rose-200/80'
                               : job.urgency === 'New Listing'
@@ -350,11 +348,11 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
                             {job.urgency}
                           </span>
                         )}
-                        <span className="text-sm font-bold text-slate-800">
+                        <span className="text-xs font-semibold text-slate-800">
                           {job.sector}
                         </span>
                         <span aria-hidden="true" className="text-slate-300">·</span>
-                        <span className="text-sm font-semibold text-slate-500">
+                        <span className="text-xs font-medium text-slate-500">
                           {job.employmentType}
                         </span>
                       </div>
@@ -363,7 +361,7 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
                       <button
                         type="button"
                         onClick={(e) => toggleSaveJob(job.id, e)}
-                        className={`p-2 rounded-xl border transition-colors ${
+                        className={`p-1.5 rounded-lg border transition-colors ${
                           isSaved
                             ? 'bg-slate-950 text-white border-slate-950'
                             : 'bg-slate-50 text-slate-400 hover:text-slate-950 hover:bg-slate-100 border-slate-200'
@@ -371,68 +369,68 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
                         title={isSaved ? 'Remove from saved' : 'Save job for later'}
                         aria-label="Save job"
                       >
-                        <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-white' : ''}`} />
+                        <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-white' : ''}`} />
                       </button>
                     </div>
 
-                    {/* Job Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-950 font-display mb-3 group-hover:text-blue-900 transition-colors leading-snug">
+                    {/* Job Title - CLEARLY DOMINANT */}
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-950 font-display mb-2 group-hover:text-blue-900 transition-colors leading-snug tracking-tight">
                       {job.title}
                     </h3>
 
-                    {/* Verified Client / Organization Type */}
+                    {/* Verified Client / Organization Type - Secondary */}
                     {job.clientType && (
-                      <div className="flex items-center gap-2 text-sm text-slate-600 mb-5 font-semibold">
-                        <Building className="w-4 h-4 text-slate-500" />
+                      <div className="flex items-center gap-2 text-xs text-slate-600 mb-4 font-medium">
+                        <Building className="w-3.5 h-3.5 text-slate-400" />
                         <span>Client: {job.clientType}</span>
                         <span aria-hidden="true" className="text-slate-300">·</span>
-                        <span className="text-xs font-mono text-slate-400 font-normal">{job.referenceCode}</span>
+                        <span className="font-mono text-slate-400 text-[11px]">{job.referenceCode}</span>
                       </div>
                     )}
 
                     {/* Salary Callout Bar */}
-                    <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="p-3.5 bg-slate-50/90 rounded-lg border border-slate-100 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                       <div>
-                        <div className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                           Audited Remuneration
                         </div>
-                        <div className="text-base sm:text-lg font-bold text-slate-950 font-mono mt-0.5">
+                        <div className="text-sm sm:text-base font-bold text-slate-950 font-mono mt-0.5">
                           {job.salary}
                         </div>
                       </div>
 
                       {job.schedule && (
                         <div className="text-xs sm:text-right font-medium text-slate-700">
-                          <span className="block text-slate-400 uppercase tracking-wider text-[11px] font-bold">Schedule</span>
-                          <span className="font-semibold">{job.schedule}</span>
+                          <span className="block text-slate-400 uppercase tracking-wider text-[10px] font-bold">Schedule</span>
+                          <span className="font-medium text-slate-800">{job.schedule}</span>
                         </div>
                       )}
                     </div>
 
                     {/* Location with Icon */}
-                    <div className="flex items-center gap-2 text-sm text-slate-700 mb-4 font-medium">
-                      <MapPin className="w-4 h-4 text-slate-500 shrink-0" />
+                    <div className="flex items-center gap-1.5 text-xs text-slate-700 mb-3 font-medium">
+                      <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                       <span>{job.location}</span>
                     </div>
 
                     {/* Short Description */}
-                    <p className="text-sm text-slate-600 leading-relaxed mb-5 line-clamp-2">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 line-clamp-2">
                       {job.shortDescription}
                     </p>
                   </div>
 
                   {/* Card Footer: Metadata + Actions */}
-                  <div className="pt-5 border-t border-slate-100 flex items-center justify-between mt-auto">
-                    <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-500">
-                      <span className="flex items-center gap-1.5 font-medium">
-                        <Calendar className="w-3.5 h-3.5" />
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+                    <div className="flex items-center gap-2.5 text-xs text-slate-500">
+                      <span className="flex items-center gap-1 font-medium">
+                        <Calendar className="w-3 h-3 text-slate-400" />
                         <span>Posted {job.postedDate}</span>
                       </span>
                       {job.applicantCount && (
                         <>
                           <span aria-hidden="true" className="text-slate-300">·</span>
-                          <span className="flex items-center gap-1.5 text-slate-700 font-semibold">
-                            <Users2 className="w-3.5 h-3.5 text-slate-500" />
+                          <span className="flex items-center gap-1 text-slate-600 font-medium">
+                            <Users2 className="w-3 h-3 text-slate-400" />
                             <span>{job.applicantCount} applied</span>
                           </span>
                         </>
@@ -445,10 +443,10 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
                         e.stopPropagation();
                         onSelectJob(job);
                       }}
-                      className="px-5 py-2.5 bg-slate-950 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl transition-all shadow-xs flex items-center gap-2 group/btn"
+                      className="h-9 px-4 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition-colors shadow-xs flex items-center gap-1.5 group/btn"
                     >
                       <span>View & Apply</span>
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" />
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
                     </button>
                   </div>
                 </div>
@@ -459,11 +457,11 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({
 
         {/* Load More Vacancies Button */}
         {filteredJobs.length > 6 && visibleCount < filteredJobs.length && (
-          <div className="mt-14 text-center">
+          <div className="mt-10 text-center">
             <button
               type="button"
               onClick={() => setVisibleCount((prev) => prev + 4)}
-              className="px-9 py-4 bg-white hover:bg-slate-50 text-slate-950 font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl border border-slate-300 hover:border-slate-400 transition-all shadow-xs"
+              className="h-11 px-7 bg-white hover:bg-slate-50 text-slate-900 font-semibold text-xs rounded-lg border border-slate-300 hover:border-slate-400 transition-colors shadow-xs"
             >
               Load More Vacancies ({filteredJobs.length - visibleCount} remaining)
             </button>

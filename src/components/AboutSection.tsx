@@ -61,12 +61,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onLearnMore, onReque
           
           {/* Left Column: Heading and Overview */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-slate-900" />
               <span>05 / Corporate Charter</span>
             </div>
             
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 font-display text-balance">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950 font-display leading-[1.15]">
               More than recruitment.
             </h2>
             
@@ -74,26 +74,26 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onLearnMore, onReque
               Founded in the United Kingdom, Strata Workforce was established with a singular conviction: that recruitment should be a collaborative partnership rather than a transactional numbers game.
             </p>
             
-            <p className="text-base text-slate-600 leading-relaxed">
+            <p className="text-sm text-slate-600 leading-relaxed">
               Headquartered with regional hubs across England, Scotland, and Wales, we bridge the gap between essential UK industries and skilled, reliable talent. We combine regional local knowledge with institutional-scale compliance to deliver seamless staffing.
             </p>
 
-            <div className="pt-4">
+            <div className="pt-2">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 hover:bg-slate-800 text-white text-sm font-bold uppercase tracking-wider rounded-xl transition-all shadow-xs"
+                className="inline-flex items-center gap-2 h-10 px-5 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition-colors shadow-xs"
               >
                 <span>About Us & Regional Leadership</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
           {/* Right Column: Interactive Charter Tabs */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-sm">
+          <div className="lg:col-span-7 bg-white rounded-xl border border-slate-200/90 p-6 sm:p-8 shadow-xs">
             
-            {/* Segmented Filter Tabs with large clear labels */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-1.5 bg-slate-100 rounded-2xl mb-8">
+            {/* Segmented Filter Tabs with clear labels */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1 bg-slate-100 rounded-lg mb-7">
               {(['mission', 'vision', 'values', 'why'] as const).map((tabKey) => {
                 const labelMap = {
                   mission: 'Mission',
@@ -106,7 +106,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onLearnMore, onReque
                     key={tabKey}
                     type="button"
                     onClick={() => setActiveTab(tabKey)}
-                    className={`py-3 px-3 text-sm font-bold rounded-xl transition-all ${
+                    className={`py-2 px-3 text-xs font-semibold rounded-md transition-all text-center ${
                       activeTab === tabKey
                         ? 'bg-white text-slate-950 shadow-xs'
                         : 'text-slate-600 hover:text-slate-950'

@@ -30,87 +30,87 @@ export const EmployerSection: React.FC<EmployerSectionProps> = ({
                 <span>03 / For UK Employers & Operations Leads</span>
               </div>
 
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display text-white leading-[1.08] text-balance">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-display text-white leading-[1.15] text-balance">
                 The right people can change everything.
               </h2>
 
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-light mt-5">
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal mt-4">
                 Whether you are staffing a new multimodal distribution centre, navigating unplanned clinical shift shortages, or appointing senior technical leadership, Strata provides institutional-grade workforce solutions engineered to protect your continuity.
               </p>
             </div>
 
             {/* 4 Core Pillars for Employers with highly legible type */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-6 border-y border-slate-800">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-base font-bold text-white font-display">
-                  <Zap className="w-5 h-5 text-blue-400" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-slate-800">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-sm font-bold text-white font-display">
+                  <Zap className="w-4 h-4 text-blue-400" />
                   <span>Temporary Staffing</span>
                 </div>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   Pre-screened personnel deployed in under 4 hours for unexpected spikes or scheduled rosters.
                 </p>
               </div>
 
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-base font-bold text-white font-display">
-                  <Users className="w-5 h-5 text-blue-400" />
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-sm font-bold text-white font-display">
+                  <Users className="w-4 h-4 text-blue-400" />
                   <span>Permanent Recruitment</span>
                 </div>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   Headhunting and competency-based search backed by our 100-day replacement guarantee.
                 </p>
               </div>
 
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-base font-bold text-white font-display">
-                  <BarChart3 className="w-5 h-5 text-blue-400" />
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-sm font-bold text-white font-display">
+                  <BarChart3 className="w-4 h-4 text-blue-400" />
                   <span>Workforce Outsourcing</span>
                 </div>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   Master Vendor & MSP programs consolidating tier-2 supply chains and reducing contingent spend.
                 </p>
               </div>
 
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-base font-bold text-white font-display">
-                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-sm font-bold text-white font-display">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
                   <span>Audited Compliance</span>
                 </div>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   Digital Home Office Right-to-Work, GLAA licensing, and automated AWR oversight.
                 </p>
               </div>
             </div>
 
             {/* Primary Action Button & Direct SLA Guarantee */}
-            <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+            <div className="space-y-3 pt-1">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <button
                   type="button"
                   onClick={onRequestServices}
-                  className="px-9 py-4.5 bg-white hover:bg-slate-100 text-slate-950 text-sm font-bold tracking-wider uppercase rounded-xl transition-all shadow-xl flex items-center justify-center gap-2.5 group"
+                  className="h-11 px-6 bg-white hover:bg-slate-100 text-slate-950 text-xs font-semibold rounded-lg transition-colors shadow-xs flex items-center justify-center gap-2 group whitespace-nowrap"
                 >
                   <span>Request Our Services</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                 </button>
 
                 {onOpenDocumentsModal && (
                   <button
                     type="button"
                     onClick={onOpenDocumentsModal}
-                    className="px-6 py-4.5 bg-slate-800/80 hover:bg-slate-800 text-white text-sm font-semibold rounded-xl border border-slate-700 transition-colors"
+                    className="h-11 px-5 bg-slate-800/80 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg border border-slate-700 transition-colors whitespace-nowrap"
                   >
                     View SLA & Terms
                   </button>
                 )}
 
-                <div className="flex items-center gap-2 text-sm text-slate-300 font-mono font-medium">
-                  <Phone className="w-4 h-4 text-blue-400" />
+                <div className="flex items-center gap-2 text-xs text-slate-300 font-mono font-medium">
+                  <Phone className="w-3.5 h-3.5 text-blue-400" />
                   <span>24/7 Priority: 0800 246 8900</span>
                 </div>
               </div>
 
-              <p className="text-sm text-slate-400">
+              <p className="text-xs text-slate-400">
                 Guaranteed 60-minute callback from a dedicated regional workforce director.
               </p>
             </div>
@@ -118,7 +118,7 @@ export const EmployerSection: React.FC<EmployerSectionProps> = ({
 
           {/* Right Column: Visual Showcase & Performance Proof */}
           <div className="lg:col-span-6">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-700/70 aspect-4/3 bg-slate-900">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-700/70 aspect-4/3 bg-slate-900">
               
               {/* Fallback container */}
               <div className="absolute inset-0 bg-slate-800 flex items-center justify-center text-center p-6 text-slate-300">
