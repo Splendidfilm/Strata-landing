@@ -1,0 +1,6 @@
+{
+  "name": "Strata Workforce | UK Recruitment & Workforce Services",
+  "description": "Connecting people with opportunity across the UK. Specialist temporary staffing, permanent recruitment, campaign management, and workforce development solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
